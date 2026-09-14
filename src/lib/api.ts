@@ -5,7 +5,7 @@ import type {
   TranscriptionResult,
 } from "./types";
 
-const BASE = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
+const BASE = (import.meta.env.VITE_API_URL ?? "").replace(/\/$/, "");
 
 // This module has no access to React context, so LanguageProvider pushes the
 // active language here directly. Only used for CLIENT-SIDE fallback messages
