@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  font-feature-settings: "cv11", "ss01";
+}
+
+body {
+  @apply bg-paper text-ink antialiased;
+  /* Faint dot-grid — texture without blur/gradients, classic brutalist paper feel. */
+  background-image: radial-gradient(circle, #17131022 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* A few hand-picked headline words get a highlighter-marker background: a
+   flat rotated rectangle behind the text instead of a gradient effect. */
+.marker {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.marker::before {
+  content: "";
+  position: absolute;
+  inset: 0.08em -0.12em;
+  background: var(--marker-color, theme("colors.sun"));
+  transform: rotate(-1.5deg);
+  z-index: -1;
+  border: 2.5px solid theme("colors.ink");
+  border-radius: 4px;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-toast-in {
+  animation: toast-in 0.22s ease-out;
+}
+
+/* Shared "press" interaction for brutalist buttons/cards: shadow shrinks and
+   the element shifts into it, like a real button being pushed down. */
+.press {
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.press:active {
+  transform: translate(4px, 4px);
+  box-shadow: none !important;
+}
